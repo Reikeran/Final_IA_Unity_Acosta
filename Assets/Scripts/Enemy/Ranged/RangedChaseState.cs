@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class RangedChaseState : StateMachineBehaviour
 {
+    EnemyBase enemy;
+    RangedEnemyData data;
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+         enemy = animator.GetComponent<EnemyBase>();
+         data = animator.GetComponent<RangedEnemyData>();
+    }
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        EnemyBase enemy = animator.GetComponent<EnemyBase>();
-        RangedEnemyData data = animator.GetComponent<RangedEnemyData>();
-
         float dist = Vector3.Distance(enemy.transform.position, enemy.player.position);
 
         enemy.agent.isStopped = false;

@@ -216,4 +216,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idealDistance: 8
-  minDistance: 4
+  minDistance: 6
