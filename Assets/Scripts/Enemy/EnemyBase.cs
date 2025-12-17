@@ -15,8 +15,15 @@ public class EnemyBase : MonoBehaviour
 
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        EnemySpeedData speedData = GetComponent<EnemySpeedData>();
+        if (speedData != null)
+        {
+            agent.speed = speedData.moveSpeed;
+            agent.autoTraverseOffMeshLink = speedData.canUseNavMeshLinks;
+        }
     }
     public bool CanAttack()
     {

@@ -2,15 +2,6 @@ using UnityEngine;
 
 public class EnemySpeedData : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float moveSpeed = 3.5f;
+    public bool canUseNavMeshLinks = false;
 }
