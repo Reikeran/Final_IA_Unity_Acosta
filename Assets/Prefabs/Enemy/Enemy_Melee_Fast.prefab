@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 9006029299159967822}
   - component: {fileID: 2173078423021973718}
   - component: {fileID: 5993321017679166789}
-  - component: {fileID: 8595297278856962986}
   - component: {fileID: 7120408187916161167}
+  - component: {fileID: 645257184574178724}
   m_Layer: 0
   m_Name: Enemy_Melee_Fast
   m_TagString: Untagged
@@ -204,19 +204,6 @@ MonoBehaviour:
   attackCooldown: 5
   damage: 10
   lastAttackTime: 0
---- !u!114 &8595297278856962986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2810465250592808872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 505a250ce0bc273438873408ecaa77e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetDistance: 1.5
 --- !u!114 &7120408187916161167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,3 +218,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   canUseNavMeshLinks: 1
+--- !u!114 &645257184574178724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810465250592808872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b516fcabc924014ca11aebce0889926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetDistance: 1.5

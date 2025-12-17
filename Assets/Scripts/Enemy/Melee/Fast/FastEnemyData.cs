@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MeleeEnemyData : MonoBehaviour, IMeleeData
+public class FastEnemyData : MonoBehaviour, IMeleeData
 {
     [Header("Movement")]
     public float offsetDistance = 1.2f;
@@ -14,6 +14,6 @@ public class MeleeEnemyData : MonoBehaviour, IMeleeData
         agent = GetComponent<NavMeshAgent>();
 
         int jumpArea = NavMesh.GetAreaFromName("Jump");
-        agent.SetAreaCost(jumpArea, 100f);
+        agent.SetAreaCost(jumpArea, 1f);
     }
 }
