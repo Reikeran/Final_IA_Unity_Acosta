@@ -18,4 +18,8 @@ public class EnemyBase : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
+    public bool CanAttack()
+    {
+        return Time.time - lastAttackTime >= attackCooldown;
+    }
 }

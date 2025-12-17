@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class ChaseState : StateMachineBehaviour
+public class RangedPatrolState : StateMachineBehaviour
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("Chasing");
+        animator.GetComponent<EnemyBase>().agent.isStopped = true;
     }
 }

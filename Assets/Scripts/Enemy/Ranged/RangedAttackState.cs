@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MeleeAttackState : StateMachineBehaviour
+public class RangedAttackState : StateMachineBehaviour
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -9,9 +9,9 @@ public class MeleeAttackState : StateMachineBehaviour
         enemy.agent.isStopped = true;
 
         enemy.lastAttackTime = Time.time;
-        Debug.Log("Melee attack!");
+        Debug.Log("Ranged shot!");
 
-        // Forzar salida a Chase
+        // Forzamos volver a Chase
         animator.SetBool("PlayerInAttackRange", false);
     }
 }
