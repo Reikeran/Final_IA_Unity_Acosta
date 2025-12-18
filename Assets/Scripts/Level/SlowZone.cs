@@ -10,6 +10,7 @@ public class SlowZone : MonoBehaviour
         NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
         if (agent != null)
         {
+            Debug.Log("EnemySlowed");
             agent.speed *= slowMultiplier;
         }
         /*PlayerMovement player = other.GetComponent<PlayerMovement>();
