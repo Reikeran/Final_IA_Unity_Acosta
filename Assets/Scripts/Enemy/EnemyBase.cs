@@ -7,6 +7,9 @@ public class EnemyBase : MonoBehaviour
     public Transform player;
     public NavMeshAgent agent;
 
+    [Header("Visual")]
+    public Transform visual;
+
     [Header("Combat")]
     public float attackCooldown = 1.2f;
     public int damage = 10;

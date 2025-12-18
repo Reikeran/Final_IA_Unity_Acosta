@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   agent: {fileID: 0}
+  visual: {fileID: 7210684246737809327}
   attackCooldown: 5
   damage: 10
   lastAttackTime: 0

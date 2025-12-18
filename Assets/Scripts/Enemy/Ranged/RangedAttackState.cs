@@ -18,21 +18,36 @@ public class RangedAttackState : StateMachineBehaviour
 
     void Shoot()
     {
+        FacePlayerInstant();
+
         if (data.projectilePrefab == null || data.firePoint == null)
             return;
+
         GameObject proj = Object.Instantiate(
             data.projectilePrefab,
             data.firePoint.position,
-            Quaternion.LookRotation(enemy.transform.forward)
+            Quaternion.LookRotation(enemy.visual.forward)
         );
 
         EnemyProjectile projectile = proj.GetComponent<EnemyProjectile>();
         projectile.speed = data.projectileSpeed;
-        projectile.Init(enemy.transform.forward);
+        projectile.Init(enemy.visual.forward);
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy.agent.isStopped = false;
+       
     }
+
+    void FacePlayerInstant()
+    {
+        Vector3 dir = enemy.player.position - enemy.visual.position;
+        dir.y = 0f;
+
+        if (dir.sqrMagnitude < 0.001f) return;
+
+        enemy.visual.rotation = Quaternion.LookRotation(dir);
+    }
+
 }

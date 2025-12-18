@@ -24,5 +24,6 @@ public class EnemySensors : MonoBehaviour
 
         bool inAttackRange = distance <= attackRange && enemy.CanAttack();
         animator.SetBool("PlayerInAttackRange", inAttackRange);
+
     }
 }
