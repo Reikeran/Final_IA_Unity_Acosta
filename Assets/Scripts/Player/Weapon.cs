@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class Weapon : MonoBehaviour
 {
@@ -24,13 +25,13 @@ public class Weapon : MonoBehaviour
     public Transform muzzle;
 
     private float nextFireTime;
-
+    public TMP_Text ammoText;
     void Awake()
     {
         currentAmmo = maxAmmoInClip;
+        RefreshAmmoText();
     }
 
-    //  LLAMADO DESDE EL PLAYER
     public void Shoot()
     {
         if (isReloading) return;
@@ -55,7 +56,7 @@ public class Weapon : MonoBehaviour
             }
 
         }
-
+        RefreshAmmoText();
         StartCoroutine(ShotEffect(origin, endPoint));
     }
 
@@ -71,8 +72,8 @@ public class Weapon : MonoBehaviour
     IEnumerator ReloadRoutine()
     {
         isReloading = true;
+        ammoText.text = "Reloading...";
         yield return new WaitForSeconds(reloadTime);
-
         int needed = maxAmmoInClip - currentAmmo;
         int taken = Mathf.Min(needed, reserveAmmo);
 
@@ -80,6 +81,7 @@ public class Weapon : MonoBehaviour
         reserveAmmo -= taken;
 
         isReloading = false;
+        RefreshAmmoText();
     }
 
     IEnumerator ShotEffect(Vector3 start, Vector3 end)
@@ -93,5 +95,9 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
 
         tracer.enabled = false;
+    }
+    private void RefreshAmmoText()
+    {
+        ammoText.text = currentAmmo + "/" + reserveAmmo;
     }
 }
