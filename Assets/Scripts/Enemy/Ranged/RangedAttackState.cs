@@ -4,7 +4,7 @@ public class RangedAttackState : StateMachineBehaviour
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        EnemyBase enemy = animator.GetComponent<EnemyBase>();
+        EnemyBase enemy = animator.GetComponentInParent<EnemyBase>();
 
         enemy.agent.isStopped = true;
 

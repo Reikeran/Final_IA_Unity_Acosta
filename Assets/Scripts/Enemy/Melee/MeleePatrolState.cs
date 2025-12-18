@@ -11,7 +11,7 @@ public class MeleePatrolState : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        enemy = animator.GetComponent<EnemyBase>();
+        enemy = animator.GetComponentInParent<EnemyBase>();
 
         enemy.agent.isStopped = false;
         enemy.agent.ResetPath();

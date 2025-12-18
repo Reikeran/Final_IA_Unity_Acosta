@@ -6,8 +6,8 @@ public class MeleeChaseState : StateMachineBehaviour
     private IMeleeData meleeData;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-         meleeData = animator.GetComponent<IMeleeData>();
-         enemy = animator.GetComponent<EnemyBase>();
+         meleeData = animator.GetComponentInParent<IMeleeData>();
+         enemy = animator.GetComponentInParent<EnemyBase>();
 
     }
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

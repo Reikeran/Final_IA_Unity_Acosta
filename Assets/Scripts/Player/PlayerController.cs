@@ -4,8 +4,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    
+    [SerializeField] private Animator animator;
+    [SerializeField] private Transform aimPivot;
     public float moveSpeed = 6f;
-
     private CharacterController controller;
     private PlayerInputActions input;
     private Vector2 moveInput;
@@ -35,18 +37,46 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        
+        Vector3 worldMove = new Vector3(moveInput.x, 0f, moveInput.y);
+
+        if (worldMove.sqrMagnitude > 1f)
+            worldMove.Normalize();
 
         ApplyGravity();
+
+        Vector3 finalMove =
+            worldMove * moveSpeed +
+            Vector3.up * verticalVelocity;
+
+        controller.Move(finalMove * Time.deltaTime);
+
+        
+        UpdateAnimation(worldMove);
     }
     void ApplyGravity()
     {
-        if (controller.isGrounded && verticalVelocity < 0)
+        if (controller.isGrounded && verticalVelocity < 0f)
             verticalVelocity = groundedForce;
 
         verticalVelocity += gravity * Time.deltaTime;
-        controller.Move(Vector3.up * verticalVelocity * Time.deltaTime);
+    }
+    void UpdateAnimation(Vector3 worldMove)
+    {
+        bool moving = worldMove.sqrMagnitude > 0.01f;
+        animator.SetBool("Moving", moving);
+
+        if (!moving)
+        {
+            animator.SetFloat("XSpeed", 0f);
+            animator.SetFloat("YSpeed", 0f);
+            return;
+        }
+
+        Vector3 localMove = aimPivot.InverseTransformDirection(worldMove);
+
+        animator.SetFloat("XSpeed", Mathf.Clamp(localMove.z, -1f, 1f));
+        animator.SetFloat("YSpeed", Mathf.Clamp(localMove.x, -1f, 1f));
     }
     /*private void OnTriggerStay(Collider other)
     {

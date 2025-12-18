@@ -6,8 +6,8 @@ public class RangedChaseState : StateMachineBehaviour
     RangedEnemyData data;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-         enemy = animator.GetComponent<EnemyBase>();
-         data = animator.GetComponent<RangedEnemyData>();
+         enemy = animator.GetComponentInParent<EnemyBase>();
+         data = animator.GetComponentInParent<RangedEnemyData>();
     }
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

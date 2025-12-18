@@ -29,4 +29,8 @@ public class EnemyBase : MonoBehaviour
     {
         return Time.time - lastAttackTime >= attackCooldown;
     }
+    protected void RegisterAttack()
+    {
+        lastAttackTime = Time.time;
+    }
 }

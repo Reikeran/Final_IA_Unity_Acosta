@@ -7,14 +7,13 @@ public class EnemySensors : MonoBehaviour
     public float attackRange = 2f;
 
     private Transform player;
-    private Animator animator;
+    [SerializeField] private Animator animator;
     private EnemyBase enemy;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemy = GetComponent<EnemyBase>();
-        animator = GetComponent<Animator>();
     }
 
     void Update()
