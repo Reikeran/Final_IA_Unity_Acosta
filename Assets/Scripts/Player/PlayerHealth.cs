@@ -23,6 +23,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     void Die()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+
+        GameManager.Instance.ToMenu();
     }
 }

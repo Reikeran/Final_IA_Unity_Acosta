@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("NPC") && Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Prey") && Input.GetKeyDown(KeyCode.E))
         {
             NPCRescue rescue = other.GetComponent<NPCRescue>();
             rescue?.Rescue();

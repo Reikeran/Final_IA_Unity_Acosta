@@ -42,10 +42,14 @@ public class EnemySensors : MonoBehaviour
         }
 
         Transform target = enemy.CurrentTarget;
+        if (target != null) 
+        { 
+            // Actualizar animaciones
+            float distanceToTarget = Vector3.Distance(transform.position, target.position);
+            animator.SetBool("PlayerInChaseRange", distanceToTarget <= chaseRange);
+            animator.SetBool("PlayerInAttackRange", distanceToTarget <= attackRange && enemy.CanAttack());
 
-        // Actualizar animaciones
-        float distanceToTarget = Vector3.Distance(transform.position, target.position);
-        animator.SetBool("PlayerInChaseRange", distanceToTarget <= chaseRange);
-        animator.SetBool("PlayerInAttackRange", distanceToTarget <= attackRange && enemy.CanAttack());
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -75,8 +76,10 @@ public class GameManager : MonoBehaviour
     public void AddBullet(int ammount)
     {
         playerGun.reserveAmmo += ammount;
+        playerGun.RefreshAmmoText();
+
     }
-    
+
     public void AddScore(int value)
     {
         score += value;
@@ -88,5 +91,8 @@ public class GameManager : MonoBehaviour
     {
         AddScore(value);
     }
-   
+   public void ToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

@@ -26,9 +26,11 @@ public class EnemyProjectile : MonoBehaviour
             other.GetComponent<PlayerHealth>()?.TakeDamage(damage);
             Destroy(gameObject);
         }
-        if (other.CompareTag("Wall"))
+        else if (other.CompareTag("Prey"))
         {
+            other.GetComponent<NPCHealth>()?.TakeDamage(damage);
             Destroy(gameObject);
         }
+        else { Destroy(gameObject); }
     }
 }

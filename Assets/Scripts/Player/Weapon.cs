@@ -96,7 +96,7 @@ public class Weapon : MonoBehaviour
 
         tracer.enabled = false;
     }
-    private void RefreshAmmoText()
+    public void RefreshAmmoText()
     {
         ammoText.text = currentAmmo + "/" + reserveAmmo;
     }
