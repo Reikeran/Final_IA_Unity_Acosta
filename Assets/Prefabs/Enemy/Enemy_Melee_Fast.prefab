@@ -114,8 +114,13 @@ MonoBehaviour:
   player: {fileID: 0}
   agent: {fileID: 0}
   visual: {fileID: 7210684246737809327}
-  attackCooldown: 5
+  attackCooldown: 0.8
   damage: 10
+  baseDamage: 10
+  baseAttackCooldown: 0.8
+  enrageThreshold: 0.5
+  damageMultiplier: 1.5
+  cooldownMultiplier: 0.6
   lastAttackTime: 0
 --- !u!114 &7120408187916161167
 MonoBehaviour:

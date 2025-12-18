@@ -1,18 +1,51 @@
+using System;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    public int health = 30;
+    [Header("Score")]
+    [SerializeField] int scoreValue = 10;
 
-    public void TakeDamage(int damage)
+    public static event Action<int> OnEnemyKilled; 
+    public float health = 30;
+    public float deathDelay = 5;
+    bool dead;
+    Animator animator;
+    EnemyBase enemyBase;
+    void Awake()
     {
+        
+        animator = GetComponentInChildren<Animator>();
+        enemyBase = GetComponent<EnemyBase>();
+    }
+    public void TakeDamage(float damage)
+    {
+        if (dead) return;
+
         health -= damage;
+
         if (health <= 0)
             Die();
     }
 
     void Die()
     {
-        Destroy(gameObject);
+        dead = true;
+
+        OnEnemyKilled?.Invoke(scoreValue);
+
+        animator.SetBool("Dead", true);
+
+        if (enemyBase != null)
+            enemyBase.Disable();
+
+        DisableCombat();
+        Destroy(gameObject, 5);
+    }
+
+    void DisableCombat()
+    {
+        foreach (Collider c in GetComponentsInChildren<Collider>())
+            c.enabled = false;
     }
 }

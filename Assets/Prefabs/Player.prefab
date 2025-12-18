@@ -163,6 +163,7 @@ MonoBehaviour:
   damage: 10
   tracer: {fileID: 705832751562741145}
   muzzle: {fileID: 8156139044496267430}
+  ammoText: {fileID: 0}
 --- !u!120 &705832751562741145
 LineRenderer:
   serializedVersion: 2
@@ -283,6 +284,7 @@ GameObject:
   - component: {fileID: 6821873312821640675}
   - component: {fileID: 2292605584493194400}
   - component: {fileID: 8986995997880114669}
+  - component: {fileID: 3049298341471171013}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -366,6 +368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dacf80c051084f74da931453976a5d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 4455560351081759033}
+  aimPivot: {fileID: 7725213076197661507}
   moveSpeed: 6
   gravity: -20
   groundedForce: -2
@@ -381,6 +385,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c5de00614b134408ef4cc0174de7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3049298341471171013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5165518072999550200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e4421598b7ec344bde19b32964f15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HpBar: {fileID: 0}
+  Maxhealth: 100
+  health: 100
 --- !u!1001 &7836194226714688680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -437,6 +456,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 59219296eec356c40970e9f5b4f0e99d, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 2adcd82d9001888468fc35ff30652c10, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -448,6 +471,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5417299774677730924}
   m_SourcePrefab: {fileID: 100100000, guid: 2adcd82d9001888468fc35ff30652c10, type: 3}
+--- !u!95 &4455560351081759033 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2adcd82d9001888468fc35ff30652c10, type: 3}
+  m_PrefabInstance: {fileID: 7836194226714688680}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6953180625570791929 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2adcd82d9001888468fc35ff30652c10, type: 3}

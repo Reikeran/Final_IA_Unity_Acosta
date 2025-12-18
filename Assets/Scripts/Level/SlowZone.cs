@@ -12,11 +12,11 @@ public class SlowZone : MonoBehaviour
         {
             agent.speed *= slowMultiplier;
         }
-        /*PlayerMovement player = other.GetComponent<PlayerMovement>();
+        PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
         {
-            player.ModifySpeed(slowMultiplier);
-        }*/
+            player.moveSpeed = player.moveSpeed * slowMultiplier;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -26,11 +26,11 @@ public class SlowZone : MonoBehaviour
         {
             agent.speed /= slowMultiplier;
         }
-        /*PlayerMovement player = other.GetComponent<PlayerMovement>();
+        PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
         {
-        // Return Player speed
-            player.ModifySpeed(slowMultiplier);
-        }*/
+
+            player.moveSpeed = player.moveSpeed / slowMultiplier;
+        }
     }
 }

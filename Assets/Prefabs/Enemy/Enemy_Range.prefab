@@ -115,8 +115,13 @@ MonoBehaviour:
   player: {fileID: 0}
   agent: {fileID: 0}
   visual: {fileID: 6840422251449782170}
-  attackCooldown: 5
+  attackCooldown: 1.5
   damage: 10
+  baseDamage: 10
+  baseAttackCooldown: 1.5
+  enrageThreshold: 0.5
+  damageMultiplier: 1.5
+  cooldownMultiplier: 0.6
   lastAttackTime: 0
 --- !u!114 &7745643823640052168
 MonoBehaviour:
@@ -133,8 +138,13 @@ MonoBehaviour:
   player: {fileID: 0}
   agent: {fileID: 0}
   visual: {fileID: 6840422251449782170}
-  attackCooldown: 1.2
+  attackCooldown: 0.4
   damage: 10
+  baseDamage: 10
+  baseAttackCooldown: 1.5
+  enrageThreshold: 0.3
+  damageMultiplier: 1.5
+  cooldownMultiplier: 0.6
   lastAttackTime: 0
   idealDistance: 8
   minDistance: 6

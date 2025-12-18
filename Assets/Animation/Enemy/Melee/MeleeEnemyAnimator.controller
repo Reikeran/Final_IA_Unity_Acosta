@@ -60,10 +60,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: PlayerInAttackRange
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2640331816739544748}
   m_Solo: 0
@@ -95,14 +92,14 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.24999988
-  m_TransitionOffset: 0.18000907
-  m_ExitTime: 0.75000006
+  m_TransitionDuration: 0.5631746
+  m_TransitionOffset: 0.03839952
+  m_ExitTime: 0.12268743
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1102 &-2640331816739544748
 AnimatorState:
   serializedVersion: 6

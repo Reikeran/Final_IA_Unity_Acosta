@@ -31,6 +31,7 @@ public class RangedAttackState : StateMachineBehaviour
 
         EnemyProjectile projectile = proj.GetComponent<EnemyProjectile>();
         projectile.speed = data.projectileSpeed;
+        projectile.damage = enemy.damage;
         projectile.Init(enemy.visual.forward);
     }
 
