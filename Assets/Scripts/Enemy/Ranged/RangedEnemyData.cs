@@ -5,7 +5,6 @@ public class RangedEnemyData : EnemyBase
 {
     public float idealDistance = 6f;
     public float minDistance = 3f;
-    private NavMeshAgent navAgent;
 
     [Header("Ranged")]
     public GameObject projectilePrefab;
@@ -14,10 +13,10 @@ public class RangedEnemyData : EnemyBase
 
     void Awake()
     {
-        navAgent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
 
         int jumpArea = NavMesh.GetAreaFromName("Jump");
-        navAgent.SetAreaCost(jumpArea, 100f);
+        agent.SetAreaCost(jumpArea, 100f);
 
     }
     public void Shoot()
