@@ -14,8 +14,9 @@ public class MeleePatrolState : StateMachineBehaviour
         enemy = animator.GetComponent<EnemyBase>();
 
         enemy.agent.isStopped = false;
-        timer = repathTime;
+        enemy.agent.ResetPath();
 
+        timer = repathTime;
         PickRandomDestination();
     }
 
