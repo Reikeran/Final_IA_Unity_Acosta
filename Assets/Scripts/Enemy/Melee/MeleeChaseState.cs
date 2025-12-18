@@ -16,8 +16,8 @@ public class MeleeChaseState : StateMachineBehaviour
             return;
 
         enemy.agent.isStopped = false;
-        Vector3 offset = (enemy.transform.position - enemy.player.position).normalized * meleeData.OffsetDistance;
-        enemy.agent.SetDestination(enemy.player.position + offset);
+        Vector3 offset = (enemy.transform.position - enemy.CurrentTarget.position).normalized * meleeData.OffsetDistance;
+        enemy.agent.SetDestination(enemy.CurrentTarget.position + offset);
 
     }
     bool IsAgentReady()

@@ -43,7 +43,7 @@ public class RangedAttackState : StateMachineBehaviour
 
     void FacePlayerInstant()
     {
-        Vector3 dir = enemy.player.position - enemy.visual.position;
+        Vector3 dir = enemy.CurrentTarget.position - enemy.visual.position;
         dir.y = 0f;
 
         if (dir.sqrMagnitude < 0.001f) return;

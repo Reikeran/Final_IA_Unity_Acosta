@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class NPCHealth : MonoBehaviour
+public class NPCHealth : MonoBehaviour, IDamageable
 {
-    public int maxHealth = 50;
-    private int currentHealth;
+    public float maxHealth = 50;
+    private float currentHealth;
 
     public bool IsAlive => currentHealth > 0;
 
@@ -12,7 +12,12 @@ public class NPCHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    void Die()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void TakeDamage(float damage)
     {
         if (!IsAlive) return;
 
@@ -22,11 +27,5 @@ public class NPCHealth : MonoBehaviour
         {
             Die();
         }
-    }
-
-    void Die()
-    {
-        Debug.Log("NPC died");
-        gameObject.SetActive(false);
     }
 }

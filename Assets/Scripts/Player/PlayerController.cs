@@ -78,13 +78,13 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("XSpeed", Mathf.Clamp(localMove.z, -1f, 1f));
         animator.SetFloat("YSpeed", Mathf.Clamp(localMove.x, -1f, 1f));
     }
-    /*private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("NPC") && Input.GetKeyDown(KeyCode.E))
         {
             NPCRescue rescue = other.GetComponent<NPCRescue>();
             rescue?.Rescue();
         }
-    }*/
+    }
 }
 

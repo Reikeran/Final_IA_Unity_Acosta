@@ -1,19 +1,21 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class NPCRescue : MonoBehaviour
 {
     public int rewardPoints = 100;
+    public int rewardAmmo = 40;
     private bool rescued = false;
 
     public void Rescue()
     {
         if (rescued) return;
-
         rescued = true;
-        Debug.Log("NPC rescued!");
+        GameManager.Instance.AddScore(rewardPoints);
 
-        //ScoreManager.Instance.AddPoints(rewardPoints);
+        GameManager.Instance.RespawnNPCAfterDelay(10f);
+
+        GameManager.Instance.AddBullet(rewardAmmo);
         Destroy(gameObject);
     }
 }

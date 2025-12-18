@@ -3,10 +3,10 @@ using UnityEngine.AI;
 
 public class RangedEnemyData : EnemyBase
 {
-    public float idealDistance = 6f;
+    [Header("Ranged Settings")]
+    public float idealDistance = 6f; // distancia a mantener del target
     public float minDistance = 3f;
 
-    [Header("Ranged")]
     public GameObject projectilePrefab;
     public Transform firePoint;
     public float projectileSpeed = 12f;
@@ -15,15 +15,18 @@ public class RangedEnemyData : EnemyBase
     {
         agent = GetComponent<NavMeshAgent>();
 
+        // 
         int jumpArea = NavMesh.GetAreaFromName("Jump");
         agent.SetAreaCost(jumpArea, 100f);
-
     }
+
     public void Shoot()
     {
         if (!CanAttack()) return;
 
         RegisterAttack();
+
+        if (projectilePrefab == null || firePoint == null) return;
 
         GameObject proj = Instantiate(
             projectilePrefab,
@@ -32,6 +35,7 @@ public class RangedEnemyData : EnemyBase
         );
 
         Rigidbody rb = proj.GetComponent<Rigidbody>();
-        rb.linearVelocity = firePoint.forward * projectileSpeed;
+        if (rb != null)
+            rb.linearVelocity = (CurrentTarget.position - firePoint.position).normalized * projectileSpeed;
     }
 }

@@ -1,11 +1,13 @@
-using System;
+// EnemyBase.cs
 using UnityEngine;
 using UnityEngine.AI;
+
+public enum TargetType { Player, Prey }
 
 public class EnemyBase : MonoBehaviour
 {
     [Header("References")]
-    public Transform player;
+    public Transform player;//movement target
     public NavMeshAgent agent;
 
     [Header("Visual")]
@@ -28,11 +30,16 @@ public class EnemyBase : MonoBehaviour
 
     [HideInInspector] public float lastAttackTime;
 
+    public Transform CurrentTarget { get; private set; }
+    public TargetType CurrentTargetType { get; private set; }
+
     void Awake()
     {
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        SetCurrentTarget(player, TargetType.Player);
         damage = baseDamage;
+
         EnemySpeedData speedData = GetComponent<EnemySpeedData>();
         if (speedData != null)
         {
@@ -40,6 +47,7 @@ public class EnemyBase : MonoBehaviour
             agent.autoTraverseOffMeshLink = speedData.canUseNavMeshLinks;
         }
     }
+
     protected virtual void OnEnable()
     {
         PlayerHealth.OnHealthChanged += OnPlayerHealthChanged;
@@ -69,17 +77,35 @@ public class EnemyBase : MonoBehaviour
         damage = baseDamage;
         attackCooldown = baseAttackCooldown;
     }
+
     public bool CanAttack()
     {
         return Time.time - lastAttackTime >= attackCooldown;
     }
+
     protected void RegisterAttack()
     {
         lastAttackTime = Time.time;
     }
+
     public void Disable()
     {
         if (agent != null)
             agent.enabled = false;
+    }
+
+    // Funciones para cambiar target
+    public void SetCurrentTarget(Transform target, TargetType type)
+    {
+        CurrentTarget = target;
+        CurrentTargetType = type;
+    }
+
+    public void SetCurrentTarget(Transform target)
+    {
+        if (target == player)
+            SetCurrentTarget(player, TargetType.Player);
+        else
+            SetCurrentTarget(target, TargetType.Prey);
     }
 }

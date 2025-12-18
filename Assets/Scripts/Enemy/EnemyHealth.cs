@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         if (dead) return;
-
+       
         health -= damage;
 
         if (health <= 0)
