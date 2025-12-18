@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions input;
     private Vector2 moveInput;
 
+    public float gravity = -20f;
+    public float groundedForce = -2f;
+
+    private float verticalVelocity;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -30,18 +35,26 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 move =
-            new Vector3(moveInput.x, 0f, moveInput.y);
-
+        Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
         controller.Move(move * moveSpeed * Time.deltaTime);
+
+        ApplyGravity();
     }
-/*private void OnTriggerStay(Collider other)
-{
-    if (other.CompareTag("NPC") && Input.GetKeyDown(KeyCode.E))
+    void ApplyGravity()
     {
-        NPCRescue rescue = other.GetComponent<NPCRescue>();
-        rescue?.Rescue();
+        if (controller.isGrounded && verticalVelocity < 0)
+            verticalVelocity = groundedForce;
+
+        verticalVelocity += gravity * Time.deltaTime;
+        controller.Move(Vector3.up * verticalVelocity * Time.deltaTime);
     }
-}*/
+    /*private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("NPC") && Input.GetKeyDown(KeyCode.E))
+        {
+            NPCRescue rescue = other.GetComponent<NPCRescue>();
+            rescue?.Rescue();
+        }
+    }*/
 }
 

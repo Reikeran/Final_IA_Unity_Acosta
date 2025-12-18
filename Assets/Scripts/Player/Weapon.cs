@@ -1,49 +1,74 @@
 using UnityEngine;
+using System.Collections;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Ammo")]
     public int maxAmmoInClip = 12;
     public int currentAmmo;
     public int reserveAmmo = 36;
 
+    [Header("Reload")]
     public float reloadTime = 1.5f;
     private bool isReloading;
+
+    [Header("Shooting")]
+    public float fireRate = 0.2f;
+    public float range = 50f;
+    public int damage = 10;
+
+    [Header("Visuals")]
+    public LineRenderer tracer;
+
+    [Header("References")]
+    public Transform muzzle;
+
+    private float nextFireTime;
 
     void Awake()
     {
         currentAmmo = maxAmmoInClip;
     }
 
-    void Update()
+    //  LLAMADO DESDE EL PLAYER
+    public void Shoot()
     {
         if (isReloading) return;
-
-        if (Input.GetButtonDown("Fire1"))
-            Shoot();
-
-        if (Input.GetKeyDown(KeyCode.R))
-            Reload();
-    }
-
-    void Shoot()
-    {
+        if (Time.time < nextFireTime) return;
         if (currentAmmo <= 0) return;
 
+        nextFireTime = Time.time + fireRate;
         currentAmmo--;
-        Debug.Log("Bang! Ammo: " + currentAmmo);
 
-        // spawn bullet / raycast
+        Vector3 origin = muzzle.position;
+        Vector3 direction = muzzle.forward;
+
+        Vector3 endPoint = origin + direction * range;
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, range))
+        {
+            endPoint = hit.point;
+
+            if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
+            {
+                damageable.TakeDamage(damage);
+            }
+
+        }
+
+        StartCoroutine(ShotEffect(origin, endPoint));
     }
 
-    void Reload()
+    public void Reload()
     {
+        if (isReloading) return;
         if (currentAmmo == maxAmmoInClip) return;
         if (reserveAmmo <= 0) return;
 
         StartCoroutine(ReloadRoutine());
     }
 
-    System.Collections.IEnumerator ReloadRoutine()
+    IEnumerator ReloadRoutine()
     {
         isReloading = true;
         yield return new WaitForSeconds(reloadTime);
@@ -55,5 +80,18 @@ public class Weapon : MonoBehaviour
         reserveAmmo -= taken;
 
         isReloading = false;
+    }
+
+    IEnumerator ShotEffect(Vector3 start, Vector3 end)
+    {
+        if (!tracer) yield break;
+
+        tracer.SetPosition(0, start);
+        tracer.SetPosition(1, end);
+        tracer.enabled = true;
+
+        yield return new WaitForSeconds(0.05f);
+
+        tracer.enabled = false;
     }
 }
